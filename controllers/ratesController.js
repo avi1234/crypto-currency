@@ -45,14 +45,14 @@ const getRate = async (req, res) => {
 
     const dataFile = helpers.readDataFile()
 
-    const rateFromdata = dataFile.find( (rate) => rate.cryptoCoinName === from)
+    const rateFromData = dataFile.find( (rate) => rate.cryptoCoinName === from)
 
-    if(!rateFromdata) {
+    if(!rateFromData) {
         res.status(404).json({success: false, version:'v1', message: "from currency doesn't exist", content:{from: from, to: to}})
         return
     }
 
-    const relevantCurrency = rateFromdata.currencies.find( (currency) => currency.to === to)
+    const relevantCurrency = rateFromData.currencies.find( (currency) => currency.to === to)
 
     if(!relevantCurrency) {
         res.status(404).json({success: false, version:'v1', message: "target currency doesn't exist", content:{from: from, to: to}})
@@ -90,21 +90,21 @@ const deleteRate = (req, res) => {
 
     const dataFile = helpers.readDataFile()
 
-    const rateFromdata = dataFile.find( (rate) => rate.cryptoCoinName === from)
+    const rateFromData = dataFile.find( (rate) => rate.cryptoCoinName === from)
 
-    if(!rateFromdata) {
+    if(!rateFromData) {
         res.status(404).json({success: false, version:'v1', message: "from currency doesn't exist", content:{from: from, to: to}})
         return
     }
 
-    const relevantCurrency = rateFromdata.currencies.find( (currency) => currency.to === to)
+    const relevantCurrency = rateFromData.currencies.find( (currency) => currency.to === to)
 
     if(!relevantCurrency) {
         res.status(404).json({success: false, version:'v1', message: "target currency doesn't exist", content:{from: from, to: to}})
         return
     }
     
-    rateFromdata.currencies = rateFromdata.currencies.filter((currency) => currency.to !== to)
+    rateFromData.currencies = rateFromData.currencies.filter((currency) => currency.to !== to)
 
     helpers.writeDataFileFromJson(dataFile)
 
