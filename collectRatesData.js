@@ -31,11 +31,11 @@ const run = () => {
                 continue
             }
 
-            if (ratesFromAPI == null) continue
+            if (!ratesFromAPI) continue
 
             rate.currencies.forEach( currency => {
                 const exchangeRate = ratesFromAPI[currency.to]
-                if(typeof exchangeRate !== 'undefined') {
+                if(exchangeRate) {
                     console.log(`update rate for 💰 ${rate.cryptoCoinName} => ${currency.to}`)
                     currency.values.push({date: fetchDate, rate: exchangeRate})
                 }

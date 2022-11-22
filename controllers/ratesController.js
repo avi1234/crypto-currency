@@ -38,14 +38,14 @@ const getRate = async (req, res) => {
 
     const rateFromdata = dataFile.find( (rate) => rate.cryptoCoinName === from)
 
-    if(typeof rateFromdata === 'undefined') {
+    if(!rateFromdata) {
         res.status(404).json({success: false, version:'v1', message: "from currency doesn't exist", content:{from: from, to: to}})
         return
     }
 
     const relevantCurrency = rateFromdata.currencies.find( (currency) => currency.to === to)
 
-    if(typeof relevantCurrency === 'undefined') {
+    if(!relevantCurrency) {
         res.status(404).json({success: false, version:'v1', message: "target currency doesn't exist", content:{from: from, to: to}})
         return
     }
@@ -83,14 +83,14 @@ const deleteRate = (req, res) => {
 
     const rateFromdata = dataFile.find( (rate) => rate.cryptoCoinName === from)
 
-    if(typeof rateFromdata === 'undefined') {
+    if(!rateFromdata) {
         res.status(404).json({success: false, version:'v1', message: "from currency doesn't exist", content:{from: from, to: to}})
         return
     }
 
     const relevantCurrency = rateFromdata.currencies.find( (currency) => currency.to === to)
 
-    if(typeof relevantCurrency === 'undefined') {
+    if(!relevantCurrency) {
         res.status(404).json({success: false, version:'v1', message: "target currency doesn't exist", content:{from: from, to: to}})
         return
     }
