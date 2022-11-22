@@ -13,14 +13,11 @@ const parseFromTo = (req, res) => {
     return {valid: true, from: req.params.from.toUpperCase(), to: req.params.to.toUpperCase()}
 }
 
-/**
-* GET action for get specific rate info
-*/
-const getRate = async (req, res) => {
-    
-    //validate and parse input
-    const parsedFromTo = parseFromTo(req, res)
-    if(!parsedFromTo.valid) return
+const parseGetRateParams = (req, res) => {
+
+    const resParams = parseFromTo(req, res)
+
+    if(!resParams.valid) return
 
     let parsedTimeframe = parseInt(req.query.timeframe)
 
@@ -28,9 +25,23 @@ const getRate = async (req, res) => {
         parsedTimeframe = config.defaultGetRatesTimeframe
     }
 
-    const from = parsedFromTo.from  
-    const to = parsedFromTo.to
-    const timeframe = parsedTimeframe
+    resParams.timeframe = parsedTimeframe
+
+    return resParams
+}
+
+/**
+* GET action for get specific rate info
+*/
+const getRate = async (req, res) => {
+    
+    //validate and parse input
+    const parsedParams = parseGetRateParams(req, res)
+    if(!parsedParams.valid) return
+
+    const from = parsedParams.from  
+    const to = parsedParams.to
+    const timeframe = parsedParams.timeframe
 
     //check that specific pairing exists
 
