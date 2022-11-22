@@ -39,9 +39,7 @@ const getRate = async (req, res) => {
     const parsedParams = parseGetRateParams(req, res)
     if(!parsedParams.valid) return
 
-    const from = parsedParams.from  
-    const to = parsedParams.to
-    const timeframe = parsedParams.timeframe
+    const {from, to, timeframe} = parsedParams
 
     //check that specific pairing exists
 
