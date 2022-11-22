@@ -8,7 +8,7 @@ helpers.readDataFile = () => {
     return JSON.parse(fs.readFileSync(config.dataFile, { encoding: "utf8", flag: "r" }))
 }
 
-helpers.writeDataFileFromJson = (json) => {
+helpers.writeDataFile = (json) => {
     fs.writeFileSync(config.dataFile, JSON.stringify(json))
 }
 

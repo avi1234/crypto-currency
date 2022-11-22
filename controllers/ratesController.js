@@ -106,7 +106,7 @@ const deleteRate = (req, res) => {
     
     rateFromData.currencies = rateFromData.currencies.filter((currency) => currency.to !== to)
 
-    helpers.writeDataFileFromJson(dataFile)
+    helpers.writeDataFile(dataFile)
 
     res.send({success: true})
 }

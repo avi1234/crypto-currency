@@ -8,7 +8,7 @@ const run = () => {
 
     const initialState = [{cryptoCoinName: 'BTC', currencies:[{to:'USD', values:[]},{to:'EUR', values:[]}]},{cryptoCoinName: 'ETH', currencies:[{to:'USD', values:[]},{to:'EUR', values:[]}]}]
 
-    helpers.writeDataFileFromJson(initialState)
+    helpers.writeDataFile(initialState)
 
     console.log('🔆 Starting to collect rates data')
 
@@ -42,7 +42,7 @@ const run = () => {
             })
         }
 
-        helpers.writeDataFileFromJson(data)
+        helpers.writeDataFile(data)
     }
 
      collectWorker()
