@@ -34,7 +34,7 @@ const getRate = async (req, res) => {
 
     //check that specific pairing exists
 
-    const dataFile = helpers.readDataFileAsJson()
+    const dataFile = helpers.readDataFile()
 
     const rateFromdata = dataFile.find( (rate) => rate.cryptoCoinName === from)
 
@@ -79,7 +79,7 @@ const deleteRate = (req, res) => {
 
     //check that specific pairing exists
 
-    const dataFile = helpers.readDataFileAsJson()
+    const dataFile = helpers.readDataFile()
 
     const rateFromdata = dataFile.find( (rate) => rate.cryptoCoinName === from)
 

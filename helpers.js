@@ -4,7 +4,7 @@ const config = require('./config')
 
 const helpers = {}
 
-helpers.readDataFileAsJson = () => {
+helpers.readDataFile = () => {
     return JSON.parse(fs.readFileSync(config.dataFile, { encoding: "utf8", flag: "r" }))
 }
 

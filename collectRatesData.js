@@ -13,10 +13,10 @@ const run = () => {
     console.log('🔆 Starting to collect rates data')
 
     const collectWorker = async () => {
-        const dataAsJson = helpers.readDataFileAsJson()
+        const data = helpers.readDataFile()
 
-        for(let iOfDataAsJson in dataAsJson) {
-            const rate = dataAsJson[iOfDataAsJson]
+        for(let iOfData in data) {
+            const rate = data[iOfData]
             console.log(`fetching data for 💰 ${rate.cryptoCoinName}`)
             const fetchDate = new Date()
 
@@ -42,7 +42,7 @@ const run = () => {
             })
         }
 
-        helpers.writeDataFileFromJson(dataAsJson)
+        helpers.writeDataFileFromJson(data)
     }
 
      collectWorker()
