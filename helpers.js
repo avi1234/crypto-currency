@@ -2,16 +2,7 @@ const fs = require('fs')
 
 const config = require('./config')
 
-const loggerImpl = (level, message) => console.log(`🦒 [${level}] ${message}`)
-
 const helpers = {}
-
-helpers.logger = {
-    debug: (message) => loggerImpl('debug', message),
-    info: (message) => loggerImpl('info', message),
-    warn: (message) => loggerImpl('warn', message),
-    error: (message) => loggerImpl('❌error', message)
-}
 
 /**
 * create the data file with defaults values

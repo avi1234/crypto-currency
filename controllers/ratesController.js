@@ -1,14 +1,12 @@
 const config = require('../config')
 const helpers = require('../helpers')
 
-const logger = helpers.logger
-
 /**
 * Parse 'from' and 'to' from the req
 */
 const parseFromTo = (req, res) => {
     if(typeof req.params.from !== 'string' || typeof req.params.to !== 'string') {
-        logger.error('invalid input for action')
+        console.log('invalid input for action')
         res.status(400).send('invalid input for action')
         return {valid: false}
     }
