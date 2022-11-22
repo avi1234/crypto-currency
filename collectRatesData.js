@@ -3,7 +3,7 @@ const axios = require('axios')
 const config = require('./config')
 const helpers = require('./helpers')
 
-const runLogic = () => {
+const run = () => {
     console.log('✋ Init the collect rates data')
 
     helpers.writeDataFileFromJson(config.rates)
@@ -48,4 +48,4 @@ const runLogic = () => {
      setInterval(collectWorker, config.fetchItervalsInSeconds * 1000);
 }
 
-module.exports = {run: runLogic}
+module.exports = { run }
