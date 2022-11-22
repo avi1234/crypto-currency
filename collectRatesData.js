@@ -6,7 +6,9 @@ const helpers = require('./helpers')
 const run = () => {
     console.log('✋ Init the collect rates data')
 
-    helpers.writeDataFileFromJson(config.rates)
+    const initialState = [{cryptoCoinName: 'BTC', currencies:[{to:'USD', values:[]},{to:'EUR', values:[]}]},{cryptoCoinName: 'ETH', currencies:[{to:'USD', values:[]},{to:'EUR', values:[]}]}]
+
+    helpers.writeDataFileFromJson(initialState)
 
     console.log('🔆 Starting to collect rates data')
 
