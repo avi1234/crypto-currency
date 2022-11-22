@@ -14,26 +14,6 @@ helpers.logger = {
 }
 
 /**
-* Retry the relevant action X times in case of error
-*/
-helpers.retry = async (action, numOfTries = 3) => {
-    let triesCounter = 1;
-    let runSuccessfuly = false
-    while(triesCounter <= numOfTries){
-        try {
-            await action()
-            runSuccessfuly = true
-            break;
-        } catch (err) {
-            helpers.logger.error(`retry #${triesCounter}: ${err}`)
-        }
-        triesCounter++
-    }
-
-    return runSuccessfuly
-}
-
-/**
 * create the data file with defaults values
 */
 helpers.createDataFile = () => {
