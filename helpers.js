@@ -9,6 +9,7 @@ helpers.readDataFile = () => {
 }
 
 helpers.writeDataFile = (json) => {
+    console.log("🌺 writing to data file")
     fs.writeFileSync(config.dataFile, JSON.stringify(json))
 }
 

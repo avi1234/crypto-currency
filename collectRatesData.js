@@ -15,8 +15,7 @@ const run = () => {
     const collectWorker = async () => {
         const data = helpers.readDataFile()
 
-        for(let iOfData in data) {
-            const rate = data[iOfData]
+        await Promise.all(data.map(async (rate) => {
             console.log(`fetching data for 💰 ${rate.cryptoCoinName}`)
             const fetchDate = new Date()
 
@@ -28,10 +27,10 @@ const run = () => {
             } catch(e) {
                 //implement errors/retry handling
                 console.log(`error while fetching api results, ${e}`)
-                continue
+                return
             }
 
-            if (!ratesFromAPI) continue
+            if (!ratesFromAPI) return
 
             rate.currencies.forEach( currency => {
                 const exchangeRate = ratesFromAPI[currency.to]
@@ -40,7 +39,7 @@ const run = () => {
                     currency.values.push({date: fetchDate, rate: exchangeRate})
                 }
             })
-        }
+        }))
 
         helpers.writeDataFile(data)
     }
@@ -49,5 +48,17 @@ const run = () => {
 
      setInterval(collectWorker, config.fetchItervalsInSeconds * 1000);
 }
+
+// const storage = {
+//     BTC: {
+//         currencies: {
+//             USD: {
+//                 rates: {
+//                     '2022-11-22T11:34': 3.22
+//                 },
+//             }
+//         }
+//     }
+// }
 
 module.exports = { run }
